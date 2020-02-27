@@ -6,7 +6,6 @@ export interface chengePasswordRequest
     password: string
 }
 
-
 export interface loginInput
  {
     userId?: string,
@@ -37,16 +36,12 @@ const loginSchema = new mongoose.Schema({
 });
 
 export const loginModel = mongoose.model("login", loginSchema);
-
-
 export function userLoginDb(input: loginInput, userName: string): Promise<any> 
 {
-  
     return new Promise(async (resolve, reject) => {
         // let D=new loginModel(input);
         let r = await loginModel.findOneAndUpdate({ "userName": userName }, input, { upsert: true });
         console.log("result:-", r);
-
         resolve(r)
     })
 }
